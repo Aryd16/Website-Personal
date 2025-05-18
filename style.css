@@ -41,10 +41,10 @@ body, html {
   transition: all 0.8s ease;
   padding: 60px 20px;
   background: #16213e;
-  border-radius: 20px;
-  margin: 30px auto;
-  max-width: 1000px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  border-radius: 0; /* opsional, agar tidak ada sudut bulat */
+  margin: 0; /* hilangkan margin tengah */
+  width: 100vw; /* gunakan seluruh lebar layar */
+  box-shadow: none; /* opsional, agar tidak ada bayangan */
 }
 
 .section.active {
