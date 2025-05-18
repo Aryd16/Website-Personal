@@ -1,67 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arya Damar Waluyo Jati - Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #0b132b;
-      color: white;
-    }
-
-    .navbar {
-      background-color: #1c1c1c;
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    .navbar a {
-      color: #ff4c61;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .section {
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: auto;
-    }
-
-    .experience-item {
-      background-color: #1f2a48;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .experience-item:hover {
-      background-color: #2a3c5c;
-    }
-
-    .experience-logo img {
-      width: 150px;
-      margin-top: 10px;
-    }
-
-    .description {
-      display: none;
-      margin-top: 10px;
-      color: #ddd;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-  </style>
 </head>
 <body>
 
@@ -75,36 +19,46 @@
   </div>
 </nav>
 
+<!-- Door Animation -->
+<div class="door-container">
+  <div class="door door-left"></div>
+  <div class="door door-right"></div>
+</div>
+
+<!-- Sections -->
 <main>
+  <section id="about" class="section">
+    <div class="container about-container">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <img src="img/Foto KTM PENS 3x4.png" alt="Foto Arya Damar Waluyo Jati" class="profile-pic">
+        <p>Hi, I'm Damar! A tech enthusiast passionate about electronics, data, and creating real-world solutions through innovation.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="projects" class="section">
     <div class="container">
       <h2>Experience</h2>
 
-      <!-- HIMA ELKA -->
-      <div class="experience-item" onclick="toggleDescription('hima')">
+      <div class="experience-item">
         <div class="experience-text">
-          <strong>Head of External Department – HIMA ELKA PENS</strong> (2024/2025)
+          <strong>Head of External Department - HIMA ELKA PENS</strong> (2024/2025)
         </div>
         <div class="experience-logo">
           <img src="img/HIMAELKA_Logo.png" alt="Logo HIMA ELKA">
         </div>
-        <div class="description" id="hima">
-          Mengkoordinasi hubungan eksternal organisasi, menjalin kerja sama dengan pihak luar, dan menyukseskan berbagai program kerja eksternal.
-        </div>
       </div>
 
-      <!-- XIRKA -->
-      <div class="experience-item" onclick="toggleDescription('xirka')">
+      <div class="experience-item">
         <div class="experience-text">
-          <strong>Electrical Technician Intern – PT. Xirka Dama Persada</strong> (2024)
+          <strong>Electrical Technician Intern - PT. Xirka Dama Persada</strong> (2024)
         </div>
         <div class="experience-logo">
           <img src="img/PT XDP Logo.jpeg" alt="Logo Xirka Dama Persada">
         </div>
-        <div class="description" id="xirka">
-          Terlibat dalam perakitan komponen elektronik, pengujian perangkat, serta memastikan kualitas sistem kelistrikan produk yang dikembangkan.
-        </div>
       </div>
+
     </div>
   </section>
 
