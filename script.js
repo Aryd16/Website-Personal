@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const doorLeft = document.querySelector('.door-left');
   const doorRight = document.querySelector('.door-right');
 
+  function toggleDescription(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+  }
+  
   function openDoors() {
     doorLeft.classList.add('open-left');
     doorRight.classList.add('open-right');
