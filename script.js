@@ -4,15 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const doorLeft = document.querySelector('.door-left');
   const doorRight = document.querySelector('.door-right');
 
-  function toggleDescription(id) {
-    const el = document.getElementById(id);
-    if (el.style.display === "block") {
-      el.style.display = "none";
-    } else {
-      el.style.display = "block";
-    }
-  }
-  
   function openDoors() {
     doorLeft.classList.add('open-left');
     doorRight.classList.add('open-right');
