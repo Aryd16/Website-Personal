@@ -42,7 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(section => {
       section.classList.remove('active');
     });
-  
+
+// Tampilkan section "About" sebagai default
+showSection('#about');
+    
     // Efek welcome
     setTimeout(() => {
       openDoors();
