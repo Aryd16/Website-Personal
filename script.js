@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function toggleDescription(id) {
     const el = document.getElementById(id);
-    el.style.display = el.style.display === "block" ? "none" : "block";
+    if (el.style.display === "block") {
+      el.style.display = "none";
+    } else {
+      el.style.display = "block";
+    }
   }
   
   function openDoors() {
