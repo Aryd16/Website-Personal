@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arya Damar Waluyo Jati - Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .description {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+    .experience-item {
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .experience-item:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px;
+      transition: 0.3s;
+    }
+  </style>
 </head>
 <body>
 
@@ -25,7 +43,6 @@
   <div class="door door-right"></div>
 </div>
 
-<!-- Sections -->
 <main>
   <section id="about" class="section">
     <div class="container about-container">
@@ -41,21 +58,27 @@
     <div class="container">
       <h2>Experience</h2>
 
-      <div class="experience-item">
+      <div class="experience-item" onclick="toggleDescription('hima')">
         <div class="experience-text">
           <strong>Head of External Department - HIMA ELKA PENS</strong> (2024/2025)
         </div>
         <div class="experience-logo">
           <img src="img/HIMAELKA_Logo.png" alt="Logo HIMA ELKA">
         </div>
+        <div class="description" id="hima">
+          Mengkoordinasi hubungan eksternal organisasi, menjalin kerja sama dengan pihak luar, dan menyukseskan berbagai program kerja eksternal.
+        </div>
       </div>
 
-      <div class="experience-item">
+      <div class="experience-item" onclick="toggleDescription('xirka')">
         <div class="experience-text">
           <strong>Electrical Technician Intern - PT. Xirka Dama Persada</strong> (2024)
         </div>
         <div class="experience-logo">
           <img src="img/PT XDP Logo.jpeg" alt="Logo Xirka Dama Persada">
+        </div>
+        <div class="description" id="xirka">
+          Terlibat dalam perakitan komponen elektronik, pengujian perangkat, serta memastikan kualitas sistem kelistrikan produk yang dikembangkan.
         </div>
       </div>
 
