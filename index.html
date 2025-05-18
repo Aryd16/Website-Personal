@@ -3,80 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Website Personal - Demo</title>
+  <title>Arya Damar Waluyo Jati - Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset & basic styles */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0f3460;
-      color: #d6d6d6;
-      overflow-x: hidden;
-    }
-    a {
-      color: #e94560;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #16213e;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      padding: 15px 0;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
-    }
-    .navbar a {
-      font-weight: 600;
-      font-size: 1.1em;
-    }
-
-    /* Sections */
-    .section {
-      display: none;
-      padding: 120px 20px 60px 20px; /* leave space for fixed navbar */
-      min-height: 100vh;
-      max-width: 900px;
-      margin: 0 auto;
-      transition: opacity 0.5s ease-in-out;
-    }
-    .section.active {
-      display: block;
-    }
+    /* Tambahan CSS untuk animasi pintu dan modal */
 
     /* Door animation */
-    .door-left, .door-right {
+    .door-container {
       position: fixed;
-      top: 0;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none; /* biar gak ganggu klik */
+      z-index: 2000;
+      display: flex;
+      overflow: hidden;
+    }
+    .door {
       width: 50vw;
       height: 100vh;
       background: linear-gradient(135deg, #e94560, #0f3460);
-      z-index: 2000;
-      transition: transform 0.8s ease-in-out;
       box-shadow: 0 0 25px #e94560;
+      transition: transform 0.8s ease-in-out;
+      transform-origin: left;
     }
     .door-left {
-      left: 0;
-      transform-origin: left;
-      transform: translateX(0);
+      transform-origin: left center;
     }
     .door-right {
-      right: 0;
-      transform-origin: right;
-      transform: translateX(0);
+      transform-origin: right center;
     }
+    /* Posisi pintu kiri dan kanan */
+    .door-left {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .door-right {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    /* Saat terbuka */
     .door-left.open-left {
       transform: translateX(-100%);
     }
@@ -84,35 +52,7 @@
       transform: translateX(100%);
     }
 
-    /* Experience items */
-    .experience-item {
-      background-color: #1b262c;
-      margin: 15px 0;
-      padding: 15px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      cursor: pointer;
-      box-shadow: 0 0 8px #0f3460;
-      transition: background-color 0.3s ease;
-    }
-    .experience-item:hover {
-      background-color: #3282b8;
-      box-shadow: 0 0 12px #3282b8;
-    }
-    .experience-text {
-      flex: 1;
-      font-weight: 600;
-    }
-    .experience-logo img {
-      max-height: 50px;
-      border-radius: 6px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 3px #e94560);
-    }
-
-    /* Modal styles */
+    /* Modal */
     #detailModal {
       display: none;
       position: fixed;
@@ -121,6 +61,7 @@
       z-index: 3000;
       justify-content: center;
       align-items: center;
+      font-family: 'Poppins', sans-serif;
     }
     #detailModal.flex {
       display: flex;
@@ -171,166 +112,219 @@
       line-height: 1.4;
       color: #ddd;
     }
+
+    /* Experience item cursor */
+    .experience-item {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1b262c;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 8px #0f3460;
+      transition: background-color 0.3s ease;
+    }
+    .experience-item:hover {
+      background-color: #3282b8;
+      box-shadow: 0 0 12px #3282b8;
+    }
+    .experience-logo img {
+      max-height: 50px;
+      border-radius: 6px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 3px #e94560);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+<nav class="navbar">
+  <div class="container">
     <a href="#about">About</a>
     <a href="#projects">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Doors for animation -->
-  <div class="door-left"></div>
-  <div class="door-right"></div>
+<!-- Door Animation -->
+<div class="door-container">
+  <div class="door door-left"></div>
+  <div class="door door-right"></div>
+</div>
 
-  <!-- Sections -->
-  <section id="about" class="section active">
-    <h1>About Me</h1>
-    <p>Halo! Saya mahasiswa Teknik Elektronika yang tertarik dengan IoT dan pengembangan sistem embedded.</p>
+<!-- Sections -->
+<main>
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Me</h2>
+      <img src="img/Foto KTM PENS 3x4.png" alt="Foto Arya" class="profile-pic" />
+      <p>Hi, I'm Damar! A tech enthusiast passionate about electronics, data, and creating real-world solutions through innovation.</p>
+    </div>
   </section>
 
   <section id="projects" class="section">
-    <h1>Experience</h1>
-
-    <div class="experience-item"
-         data-title="Head of External Department - HIMA ELKA PENS"
-         data-description="Menangani komunikasi eksternal dan hubungan organisasi selama masa jabatan 2024/2025."
-         data-image="https://aryd16.github.io/Website-Personal/img/HIMAELKA_Logo.png">
-      <div class="experience-text">
-        <strong>Head of External Department - HIMA ELKA PENS</strong> (2024/2025)
+    <div class="container">
+      <h2>Experience</h2>
+  
+      <div class="experience-item" 
+           data-title="Head of External Department - HIMA ELKA PENS"
+           data-description="Menangani komunikasi eksternal dan hubungan organisasi selama masa jabatan 2024/2025."
+           data-image="img/HIMAELKA_Logo.png">
+        <div class="experience-text">
+          <strong>Head of External Department - HIMA ELKA PENS</strong> (2024/2025)
+        </div>
+        <div class="experience-logo">
+          <img src="img/HIMAELKA_Logo.png" alt="HIMA ELKA" />
+        </div>
       </div>
-      <div class="experience-logo">
-        <img src="https://aryd16.github.io/Website-Personal/img/HIMAELKA_Logo.png" alt="HIMA ELKA" />
+  
+      <div class="experience-item" 
+           data-title="Electrical Technician Intern - PT. Xirka Dama Persada"
+           data-description="Melakukan instalasi dan perbaikan sistem kelistrikan pada proyek perusahaan selama magang 2024."
+           data-image="img/PT XDP Logo.jpeg">
+        <div class="experience-text">
+          <strong>Electrical Technician Intern - PT. Xirka Dama Persada</strong> (2024)
+        </div>
+        <div class="experience-logo">
+          <img src="img/PT XDP Logo.jpeg" alt="Xirka" />
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+  <section id="certifications" class="section">
+    <div class="container">
+      <h2>Licenses & Certifications</h2>
+      <div class="card-certification">
+        <div class="cert-text">
+          <ul>
+            <li>Data Visualization Basics – Dicoding</li>
+            <li>Data Science Fundamentals – Dicoding</li>
+            <li>Structured Query Language (SQL) Fundamentals – Dicoding</li>
+          </ul>
+        </div>
+        <div class="cert-logo">
+          <img src="img/dicoding-logo.jpeg" alt="Dicoding Logo" />
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="experience-item"
-         data-title="Electrical Technician Intern - PT. Xirka Dama Persada"
-         data-description="Melakukan instalasi dan perbaikan sistem kelistrikan pada proyek perusahaan selama magang 2024."
-         data-image="https://aryd16.github.io/Website-Personal/img/PT%20XDP%20Logo.jpeg">
-      <div class="experience-text">
-        <strong>Electrical Technician Intern - PT. Xirka Dama Persada</strong> (2024)
-      </div>
-      <div class="experience-logo">
-        <img src="https://aryd16.github.io/Website-Personal/img/PT%20XDP%20Logo.jpeg" alt="PT Xirka Dama Persada" />
-      </div>
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>Electrical Troubleshooting</li>
+        <li>Electrical Wiring</li>
+        <li>SQL</li>
+        <li>Data Visualization</li>
+        <li>Data Science</li>
+        <li>Team Management</li>
+        <li>Leadership</li>
+        <li>Problem Solving</li>
+        <li>C Programming</li>
+        <li>C++</li>
+        <li>Arduino IDE</li>
+        <li>Microsoft Office (Word, Excel, PowerPoint)</li>
+      </ul>
     </div>
   </section>
 
   <section id="contact" class="section">
-    <h1>Contact</h1>
-    <p>Silahkan hubungi saya di email: <a href="mailto:email@domain.com">email@domain.com</a></p>
-  </section>
-
-  <!-- Modal -->
-  <div id="detailModal" style="display:none; justify-content:center; align-items:center;">
-    <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h2 id="modal-title"></h2>
-      <img id="modal-image" src="" alt="" />
-      <p id="modal-description"></p>
+    <div class="container">
+      <h2>Contact</h2>
+      <p>
+        <img src="img/WA_Logo.jpg" alt="Phone" style="width:20px; vertical-align:middle;" /> 
+        <a href="https://wa.me/6285234478870" target="_blank">+62-852-3447-8870</a>
+      </p>
+      <p>
+        <img src="img/Email_Logo.jpg" alt="Email" style="width:20px; vertical-align:middle;" /> 
+        <a href="mailto:aryadamar1601@gmail.com">aryadamar1601@gmail.com</a>
+      </p>
+      <p>
+        <img src="img/linkedin-logo.png" alt="LinkedIn" style="width:20px; vertical-align:middle;" /> 
+        <a href="https://www.linkedin.com/in/arya-damar-waluyo-jati-3382a4360/" target="_blank">linkedin.com/in/aryadamar</a>
+      </p>
     </div>
+  </section>
+</main>
+
+<!-- Modal -->
+<div id="detailModal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 id="modal-title"></h2>
+    <img id="modal-image" src="" alt="" />
+    <p id="modal-description"></p>
   </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const sections = document.querySelectorAll('.section');
-      const links = document.querySelectorAll('.navbar a');
-      const doorLeft = document.querySelector('.door-left');
-      const doorRight = document.querySelector('.door-right');
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 Arya Damar Waluyo Jati. All rights reserved.</p>
+  </div>
+</footer>
 
-      // Modal Elements
-      const modal = document.getElementById('detailModal');
-      const modalTitle = document.getElementById('modal-title');
-      const modalDesc = document.getElementById('modal-description');
-      const modalImg = document.getElementById('modal-image');
-      const closeBtn = document.querySelector('.close-btn');
+<script>
+  // Animasi buka pintu setelah halaman load
+  window.addEventListener('load', () => {
+    const doorLeft = document.querySelector('.door-left');
+    const doorRight = document.querySelector('.door-right');
+    setTimeout(() => {
+      doorLeft.classList.add('open-left');
+      doorRight.classList.add('open-right');
+    }, 300); // delay buka pintu
+    // Setelah animasi selesai, sembunyikan container pintu
+    setTimeout(() => {
+      document.querySelector('.door-container').style.display = 'none';
+    }, 1100);
+  });
 
-      // Ambil semua experience-item
-      const experienceItems = document.querySelectorAll('.experience-item');
+  // Modal untuk experience
+  const modal = document.getElementById('detailModal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalImage = document.getElementById('modal-image');
+  const modalDescription = document.getElementById('modal-description');
+  const closeBtn = modal.querySelector('.close-btn');
 
-      experienceItems.forEach(item => {
-        item.style.cursor = 'pointer'; // cursor pointer biar keliatan klikable
-
-        item.addEventListener('click', () => {
-          // Ambil data dari atribut data-*
-          const title = item.getAttribute('data-title');
-          const description = item.getAttribute('data-description');
-          const imageSrc = item.getAttribute('data-image');
-
-          // Set konten modal
-          modalTitle.textContent = title;
-          modalDesc.textContent = description;
-          modalImg.src = imageSrc;
-          modalImg.alt = title;
-
-          // Tampilkan modal
-          modal.style.display = 'flex';
-        });
-      });
-
-      // Tutup modal jika klik tombol close
-      closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-
-      // Tutup modal jika klik di luar modal content
-      window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
-
-      // Fungsi buka tutup pintu animasi
-      function openDoors() {
-        doorLeft.classList.add('open-left');
-        doorRight.classList.add('open-right');
-      }
-
-      function closeDoors() {
-        doorLeft.classList.remove('open-left');
-        doorRight.classList.remove('open-right');
-      }
-
-      function showSection(id) {
-        sections.forEach(section => {
-          if ('#' + section.id === id) {
-            section.classList.add('active');
-          } else {
-            section.classList.remove('active');
-          }
-        });
-      }
-
-      // Link navbar click handler
-      links.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-
-          closeDoors();
-
-          setTimeout(() => {
-            showSection(targetId);
-            openDoors();
-          }, 800);
-        });
-      });
-
-      // Tidak tampil section apapun saat load pertama, lalu tampilkan About
-      sections.forEach(section => {
-        section.classList.remove('active');
-      });
-      showSection('#about');
-
-      // Efek welcome (buka pintu setelah 2 detik)
-      setTimeout(() => {
-        openDoors();
-      }, 2000);
+  document.querySelectorAll('.experience-item').forEach(item => {
+    item.addEventListener('click', () => {
+      modalTitle.textContent = item.getAttribute('data-title');
+      modalDescription.textContent = item.getAttribute('data-description');
+      modalImage.src = item.getAttribute('data-image');
+      modalImage.alt = item.getAttribute('data-title');
+      modal.classList.add('flex');
     });
-  </script>
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('flex');
+  });
+
+  // Tutup modal jika klik di luar modal-content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('flex');
+    }
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetID = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetID);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
