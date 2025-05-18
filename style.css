@@ -1,276 +1,61 @@
-/* Reset dan umum */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #0f0f1a;
-    color: #e0e0e0;
-    height: 100%;
-    scroll-behavior: smooth;
-  }
-  
-  /* Container */
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  /* Navbar */
-  .navbar {
-    background: rgba(15, 15, 26, 0.8);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    padding: 15px 0;
-  }
-  
-  .navbar .container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  .navbar a {
-    color: #e94560;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  
-  .navbar a:hover {
-    color: #ffb6b9;
-    text-shadow: 0 0 8px #e94560;
-  }
-  
-  /* Sections */
-  .section {
-    display: none;
-    height: calc(100vh - 100px);
-    padding: 50px 20px;
-    overflow-y: auto;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.8s ease;
-    background: #16213e;
-    border-radius: 20px;
-    margin-top: 30px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  }
-  
-  .section.active {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  /* Skills list */
-  .skills-list {
-    list-style: none;
-    padding: 0;
-    columns: 2;
-    column-gap: 40px;
-  }
-  
-  .skills-list li {
-    margin-bottom: 10px;
-  }
-
-  .profile-pic {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-
-  .experience-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1a1a2e;
-    padding: 15px 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  }
-  
-  .experience-text {
-    flex: 1;
-    font-size: 1.1em;
-  }
-  
-  .experience-logo img {
-    width: 60px; /* Ukuran logo */
-    height: auto;
-    object-fit: contain;
-  }
-
-  .experience-item:hover {
-    background: #16213e;
-    transform: scale(1.02);
-    transition: all 0.3s ease;
-  }
-  
-  
-  /* Contact */
-  #contact a {
-    color: #e94560;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  #contact a:hover {
-    color: #ffb6b9;
-    text-shadow: 0 0 8px #e94560;
-    transform: scale(1.05);
-    text-decoration: none;
-  }
-  
-  .certification-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .cert-logo {
-    width: 120px; /* Ukuran logonya, bisa diubah */
-    height: auto;
-  }
-
-  .card-certification {
-    background: #1a1a2e;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.card-certification .cert-text ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.card-certification .cert-logo img {
-    width: 100px; /* Ukuran logo Dicoding */
-    height: auto;
-}
-
-/* Responsive biar rapi di HP */
-@media (max-width: 768px) {
-  .card-certification {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .card-certification .cert-logo {
-    margin-top: 15px;
-  }
-}
-
-.card-certification:hover {
-  background: #16213e;
-  transform: scale(1.02);
-  transition: all 0.3s ease;
-}
-
-  /* Footer */
-  .footer {
-    background: #1a1a2e;
-    color: #aaa;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9em;
-  }
-  
-  /* Door Animation */
-  .door-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    pointer-events: none;
-    z-index: 9999;
-  }
-  
-  .door {
-    width: 50%;
-    height: 100%;
-    background: #0f0f1a;
-    transition: transform 1s ease;
-  }
-  
-  .door-left {
-    border-right: 2px solid #222;
-  }
-  
-  .door-right {
-    border-left: 2px solid #222;
-  }
-  
-  .door.open-left {
-    transform: translateX(-100%);
-  }
-  
-  .door.open-right {
-    transform: translateX(100%);
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .skills-list {
-      columns: 1;
-    }
-  
-    .navbar .container {
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
-
 /* Modal Styles */
 .modal {
   display: none; /* Hidden by default */
   position: fixed;
-  z-index: 10000; /* Di atas semua */
+  z-index: 10000; /* di atas animasi pintu */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.7);
+  overflow: auto; /* jika modal tinggi melebihi layar */
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
   background-color: #1a1a2e;
   margin: 10% auto;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 15px;
   width: 80%;
   max-width: 500px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
   color: #e0e0e0;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  position: relative;
+  animation: fadeInScale 0.4s ease forwards;
+}
+
+.modal-content img {
+  max-width: 150px;
+  margin: 20px 0;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .close-btn {
   color: #e94560;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  position: absolute;
+  right: 15px;
+  top: 10px;
   cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
 }
 
 .close-btn:hover {
   color: #ffb6b9;
 }
-  
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
