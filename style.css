@@ -192,38 +192,39 @@ body, html {
   
   /* Door Animation */
   .door-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    pointer-events: none;
-    z-index: 9999;
-  }
-  
-  .door {
-    width: 50%;
-    height: 100%;
-    background: #0f0f1a;
-    transition: transform 1s ease;
-  }
-  
-  .door-left {
-    border-right: 2px solid #222;
-  }
-  
-  .door-right {
-    border-left: 2px solid #222;
-  }
-  
-  .door.open-left {
-    transform: translateX(-100%);
-  }
-  
-  .door.open-right {
-    transform: translateX(100%);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.door {
+  width: 50%;
+  height: 100%;
+  background: #0f0f1a;
+  transition: transform 1s ease;
+}
+
+.door-left {
+  border-right: 2px solid #222;
+}
+
+.door-right {
+  border-left: 2px solid #222;
+}
+
+.door.open-left {
+  transform: translateX(-100%);
+}
+
+.door.open-right {
+  transform: translateX(100%);
+}
+
   
   /* Responsive */
   @media (max-width: 768px) {
