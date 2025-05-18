@@ -1,255 +1,300 @@
-/* Reset & Base */
-* {
+/* Reset dan umum */
+body, html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
   font-family: 'Poppins', sans-serif;
-  background: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
+  background-color: #0f0f1a;
+  color: #e0e0e0;
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
+/* Container */
 .container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* Navbar */
 .navbar {
-  background: #222;
-  padding: 15px 0;
+  background: rgba(15, 15, 26, 0.8);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  padding: 15px 0;
 }
 
-.navbar .container a {
-  color: #fff;
+.navbar .container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.navbar a {
+  color: #e94560;
   text-decoration: none;
-  margin-right: 25px;
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.navbar .container a:hover,
-.navbar .container a.active {
-  color: #1e90ff;
+.navbar a:hover {
+  color: #ffb6b9;
+  text-shadow: 0 0 8px #e94560;
 }
 
-/* Door animation */
+/* Sections */
+.section {
+  display: none;
+  height: calc(100vh - 100px);
+  padding: 50px 20px;
+  overflow-y: auto;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.8s ease;
+  background: #16213e;
+  border-radius: 20px;
+  margin-top: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Skills list */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  column-gap: 40px;
+}
+
+.skills-list li {
+  margin-bottom: 10px;
+  position: relative;
+  cursor: default;
+}
+
+/* Tooltip for skill-item */
+.skill-item:hover::after {
+  content: attr(data-desc);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translate(10px, -50%);
+  background: #22253b;
+  color: #ccc;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  max-width: 250px;
+  width: max-content;
+}
+
+/* Profile pic */
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* Experience */
+.experience-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a2e;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  position: relative;
+}
+
+.experience-text {
+  flex: 1;
+  font-size: 1.1em;
+  position: relative;
+}
+
+/* Description for experience items */
+.experience-text .desc {
+  display: none;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #ccc;
+  background: #22253b;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  max-width: 400px;
+  position: absolute;
+  left: 0;
+  top: 130%;
+  z-index: 10;
+}
+
+/* Show description on hover */
+.experience-item:hover .desc {
+  display: block;
+}
+
+.experience-logo img {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Hover effect experience */
+.experience-item:hover {
+  background: #16213e;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Certifications */
+.card-certification {
+  background: #1a1a2e;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  cursor: default;
+}
+
+.card-certification .cert-text ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.card-certification .cert-logo img {
+  width: 100px;
+  height: auto;
+}
+
+/* Tooltip for certification items */
+.cert-item {
+  position: relative;
+}
+
+.cert-item:hover::after {
+  content: attr(data-desc);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translate(10px, -50%);
+  background: #22253b;
+  color: #ccc;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  max-width: 250px;
+  width: max-content;
+}
+
+/* Hover effect certifications */
+.card-certification:hover {
+  background: #16213e;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Contact */
+#contact a {
+  color: #e94560;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+#contact a:hover {
+  color: #ffb6b9;
+  text-shadow: 0 0 8px #e94560;
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+/* Inline description for contact */
+.desc-inline {
+  font-size: 0.9em;
+  color: #999;
+  margin-left: 10px;
+}
+
+/* Footer */
+.footer {
+  background: #11111a;
+  color: #555;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+/* Door animation styles */
 .door-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  pointer-events: none;
-  z-index: 999;
+  z-index: 2000;
   display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 
 .door {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: #222;
-  transition: transform 1s ease;
-  top: 0;
-  z-index: 1000;
-}
-
-.door-left {
-  left: 0;
+  flex: 1;
+  background: #e94560;
+  transition: transform 2s ease;
   transform-origin: left;
   transform: translateX(0);
 }
 
 .door-right {
-  right: 0;
+  background: #9c1c33;
   transform-origin: right;
-  transform: translateX(0);
 }
 
-.door-left.open-left {
+/* Door open animation - will be triggered by JS */
+.door-open-left {
   transform: translateX(-100%);
 }
 
-.door-right.open-right {
+.door-open-right {
   transform: translateX(100%);
 }
 
-/* Sections */
-.section {
-  display: none;
-  padding: 40px 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
-}
-
-.section.active {
-  display: block;
-}
-
-/* Profile Picture */
-.profile-pic {
-  width: 160px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* Experience Items */
-.experience-item {
-  cursor: pointer;
-  background: #fafafa;
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-.experience-item:hover {
-  background-color: #e8f0fe;
-}
-
-.experience-text {
-  flex: 1;
-  font-weight: 600;
-}
-
-.experience-logo img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-left: 20px;
-}
-
-/* Certifications */
-.card-certification {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: #f0f8ff;
-  border-radius: 6px;
-  padding: 20px;
-}
-
-.cert-text ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  font-size: 1rem;
-}
-
-.cert-logo img {
-  width: 120px;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Skills */
-.skills-list {
-  list-style-type: circle;
-  padding-left: 20px;
-  font-size: 1rem;
-}
-
-/* Contact */
-#contact p {
-  margin-bottom: 10px;
-  font-size: 1rem;
-}
-
-#contact a {
-  color: #1e90ff;
-  text-decoration: none;
-}
-
-#contact a:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 15px 0;
-  background: #222;
-  color: #fff;
-  margin-top: 40px;
-  font-size: 0.9rem;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1500;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 25px;
-  border-radius: 8px;
-  max-width: 500px;
-  position: relative;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  text-align: center;
-}
-
-.modal-content img {
-  max-width: 150px;
-  margin: 15px 0;
-  object-fit: contain;
-}
-
-.close-btn {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: #000;
-}
-
 /* Responsive */
-@media (max-width: 600px) {
+@media(max-width: 768px) {
+  .skills-list {
+    columns: 1;
+  }
   .experience-item {
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .experience-logo img {
-    margin: 10px 0 0 0;
-  }
-
-  .card-certification {
-    flex-direction: column;
-    text-align: center;
+  .experience-logo {
+    margin-top: 10px;
   }
 }
