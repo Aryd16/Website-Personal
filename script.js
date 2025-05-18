@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('.section');
   const links = document.querySelectorAll('.navbar a');
   const doorLeft = document.querySelector('.door-left');
@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Ambil semua experience-item
   const experienceItems = document.querySelectorAll('.experience-item');
 
-  experienceItems.forEach((item) => {
-    item.style.cursor = 'pointer'; // cursor pointer biar keliatan klikable
+  experienceItems.forEach(item => {
+    item.style.cursor = 'pointer'; // biar cursor pointer saat hover
 
     item.addEventListener('click', () => {
       // Ambil data dari atribut data-*
@@ -34,62 +34,72 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Tutup modal jika klik tombol close
-  closeBtn.addEventListener('click', () => {
+  // Tutup modal jika klik tombol close atau di luar modal-content
+  closeBtn.onclick = function() {
     modal.style.display = 'none';
-  });
+  };
 
-  // Tutup modal jika klik di luar modal content
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
+  window.onclick = function(event) {
+    if (event.target == modal) {
       modal.style.display = 'none';
     }
-  });
+  };
 
-  // Animasi pintu
+  // Fungsi buka pintu (animasi)
   function openDoors() {
     doorLeft.classList.add('open-left');
     doorRight.classList.add('open-right');
+
+    // Setelah animasi selesai, hilangkan pintu
+    setTimeout(() => {
+      document.querySelector('.door-container').style.display = 'none';
+    }, 1200);
   }
 
-  function closeDoors() {
-    doorLeft.classList.remove('open-left');
-    doorRight.classList.remove('open-right');
-  }
-
-  // Tampilkan section sesuai id
+  // Fungsi untuk menampilkan section yang dipilih
   function showSection(id) {
-    sections.forEach((section) => {
+    sections.forEach(section => {
       if ('#' + section.id === id) {
         section.classList.add('active');
       } else {
         section.classList.remove('active');
       }
     });
+
+    // Update navbar active class
+    links.forEach(link => {
+      if (link.getAttribute('href') === id) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
   }
 
+  // Saat halaman pertama kali dimuat, buka pintu dan tampilkan About
+  showSection('#about');
+  setTimeout(() => {
+    openDoors();
+  }, 1500);
+
   // Event klik navbar
-  links.forEach((link) => {
-    link.addEventListener('click', function (e) {
+  links.forEach(link => {
+    link.addEventListener('click', e => {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
 
-      closeDoors();
+      // Buka pintu dulu
+      document.querySelector('.door-container').style.display = 'flex';
+      doorLeft.classList.remove('open-left');
+      doorRight.classList.remove('open-right');
 
+      // Setelah pintu tertutup, ganti section, lalu buka pintu
       setTimeout(() => {
-        showSection(targetId);
+        showSection(link.getAttribute('href'));
+
+        // Buka pintu
         openDoors();
-      }, 800);
+      }, 1000);
     });
   });
 
-  // Saat load pertama, hide semua section
-  sections.forEach((section) => {
-    section.classList.remove('active');
-  });
-
-  // Efek welcome buka pintu
-  setTimeout(() => {
-    openDoors();
-  }, 2000);
 });
